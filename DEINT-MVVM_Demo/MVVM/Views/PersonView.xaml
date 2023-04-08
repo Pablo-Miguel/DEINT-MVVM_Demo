@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DEINT_MVVM_Demo.MVVM.Views.PersonView"
+             xmlns:converters="clr-namespace:DEINT_MVVM_Demo.MVVM.Models.Converters"
+             Title="PersonView">
+
+    <ContentPage.Resources>
+        <converters:BoolConverter x:Key="boolConverter" />
+    </ContentPage.Resources>
+    
+    <ScrollView>
+        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+            <Label Text="{Binding Person.Name, StringFormat='Name: {0}'}" />
+            <CheckBox IsChecked="{Binding Person.Married, Converter={StaticResource boolConverter}}" />
+            <!--CommandParameter="{x:Reference btn}" // CommandParameter="1" // CommandParameter="{Binding Source={x:Reference btn}, Path=Text}"-->
+            <Button x:Name="btn" Text="Click Me" Command="{Binding ClickCommand}" CommandParameter="{Binding Source={x:Reference btn}, Path=Text}" />
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>
